@@ -1,5 +1,67 @@
+function show_items()
+{
+ var ddl = document.getElementById("start");
+ var selectedValue = ddl.options[ddl.selectedIndex].value;
+    if (selectedValue == "Forest of Flowers Mississauga")
+   {
+    document.getElementById('forest_flower_shop').style.display = 'block';
+    document.getElementById('flower_creation_shop').style.display = 'none';
+    document.getElementById('oakville_florist_shop').style.display = 'none';
+    document.getElementById('tim_hortons_shop').style.display = 'none';
+    document.getElementById('starbucks_shop').style.display = 'none';
+    document.getElementById('second_cup_shop').style.display = 'none';
+   }
+  else if (selectedValue == "Flower Creations Mississauga")
+   {
+    document.getElementById('forest_flower_shop').style.display = 'none';
+    document.getElementById('flower_creation_shop').style.display = 'block';
+    document.getElementById('oakville_florist_shop').style.display = 'none';
+    document.getElementById('tim_hortons_shop').style.display = 'none';
+    document.getElementById('starbucks_shop').style.display = 'none';
+    document.getElementById('second_cup_shop').style.display = 'none';
+   }
+   else if (selectedValue == "Oakville Florist Shop")
+   {
+    document.getElementById('forest_flower_shop').style.display = 'none';
+    document.getElementById('flower_creation_shop').style.display = 'none';
+    document.getElementById('oakville_florist_shop').style.display = 'block';
+    document.getElementById('tim_hortons_shop').style.display = 'none';
+    document.getElementById('starbucks_shop').style.display = 'none';
+    document.getElementById('second_cup_shop').style.display = 'none';
+   }
+  else  if (selectedValue == "Tim Hortons Mississauga")
+   {
+    document.getElementById('forest_flower_shop').style.display = 'none';
+    document.getElementById('flower_creation_shop').style.display = 'none';
+    document.getElementById('oakville_florist_shop').style.display = 'none';
+    document.getElementById('tim_hortons_shop').style.display = 'block';
+    document.getElementById('starbucks_shop').style.display = 'none';
+    document.getElementById('second_cup_shop').style.display = 'none';
+   }
+   else if (selectedValue == "Starbucks Mississauga")
+   {
+    document.getElementById('forest_flower_shop').style.display = 'none';
+    document.getElementById('flower_creation_shop').style.display = 'none';
+    document.getElementById('oakville_florist_shop').style.display = 'none';
+    document.getElementById('tim_hortons_shop').style.display = 'none';
+    document.getElementById('starbucks_shop').style.display = 'block';
+    document.getElementById('second_cup_shop').style.display = 'none';
+   }
+   else if (selectedValue == "Second Cup Mississauga")
+   {
+    document.getElementById('forest_flower_shop').style.display = 'none';
+    document.getElementById('flower_creation_shop').style.display = 'none';
+    document.getElementById('oakville_florist_shop').style.display = 'none';
+    document.getElementById('tim_hortons_shop').style.display = 'none';
+    document.getElementById('starbucks_shop').style.display = 'none';
+    document.getElementById('second_cup_shop').style.display = 'block';
+   }
+
+}
 
 
+
+//initializing and creating a route using the google maps api
 function initMap() {
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;

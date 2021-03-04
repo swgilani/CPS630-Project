@@ -28,25 +28,103 @@
     <h1>Ride & Deliveries</h1>
     <br><br>
 
-    
+    <!-- Shows the google maps -->
+    <div id="map"></div>
+
+    <!-- Form with data that will be posted to PHP, and then to our database-->
     <form action="">
-      <label for="fname">Pickup location</label><br>
-      <input type="text" id="start"><br>
+      <!-- Store selection -->
+      <label for="store_selection">Select a store</label><br>
+        <select name="shops" id="start" onchange="show_items();">
+          <option hidden disabled selected value> -- select an option -- </option>
+          <option id="forest_of_flowers" value="Forest of Flowers Mississauga">Forest of Flowers (Florist)</option>
+          <option id="flower_creations_mississauga" value="Flower Creations Mississauga">Flower Creations (Florist)</option>
+          <option id="oakville_florist_shop" value="Oakville Florist Shop">Oakville Florist Shop (Florist)</option>
+          <option id="tim_hortons" value="Tim Hortons Mississauga">Tim Hortons (Coffee)</option>
+          <option id="starbucks" value="Starbucks Mississauga">Starbucks (Coffee)</option>
+          <option id="second_cup" value="Second Cup Mississauga">Second Cup (Coffee)</option>
+        </select>
 
-      <label for="lname">Where to?</label><br>
-      <input type="text" id="end"><br><br>
-
+        <br>
+        <!-- Destination selection -->
+      <label for="fname">Where to?</label><br>
+      <input type="text" id="end"><br>
+        <!-- Time selection -->
       <label for="start">Date</label>
       <input type="date" id="date" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31"><br/>
 
       <label for="appt">Pickup time</label>
       <input type="time" id="time" name="appt" required>      
+      
+      
+      <!-- Item list for all the item shops. Will be hidden unless clicked on the specific store-->
+      <div id="forest_flower_shop" style="display:none">
+        <h1> Store Items</h1>
+        <input type="checkbox" id="item1" name="tulip" value="Bike">
+        <label for="item1"> Tulip - $8</label><br>
+        <input type="checkbox" id="item2" name="roses" value="Car">
+        <label for="item2"> Roses - $4</label><br>
+        <input type="checkbox" id="item3" name="sunflower" value="Boat">
+        <label for="item3">Sunflower - $7</label><br><br>
+      </div>
+      <div id="flower_creation_shop" style="display:none">
+        <h1> Store Items</h1>
+        <input type="checkbox" id="item1" name="tulip" value="Bike">
+        <label for="item1"> Daises - $3</label><br>
+        <input type="checkbox" id="item2" name="roses" value="Car">
+        <label for="item2"> Orchids - $10</label><br>
+        <input type="checkbox" id="item3" name="sunflower" value="Boat">
+        <label for="item3">Sunflower - $12</label><br><br>
+      </div>
+      <div id="oakville_florist_shop" style="display:none">
+        <h1> Store Items</h1>
+        <input type="checkbox" id="item1" name="tulip" value="Bike">
+        <label for="item1"> Lilies - $3</label><br>
+        <input type="checkbox" id="item2" name="roses" value="Car">
+        <label for="item2"> Roses - $9</label><br>
+        <input type="checkbox" id="item3" name="sunflower" value="Boat">
+        <label for="item3">Maarigold - $2</label><br><br>
+      </div>
+      <div id="tim_hortons_shop" style="display:none">
+        <h1> Store Items</h1>
+        <input type="checkbox" id="item1" name="tulip" value="Bike">
+        <label for="item1"> Double Double - $4</label><br>
+        <input type="checkbox" id="item2" name="roses" value="Car">
+        <label for="item2"> Iced Cap - $3</label><br>
+        <input type="checkbox" id="item3" name="sunflower" value="Boat">
+        <label for="item3">Iced Coffee - $3</label><br><br>
+      </div>
+      <div id="starbucks_shop" style="display:none">
+        <h1> Store Items</h1>
+        <input type="checkbox" id="item1" name="tulip" value="Bike">
+        <label for="item1"> Caramel macciato - $4</label><br>
+        <input type="checkbox" id="item2" name="roses" value="Car">
+        <label for="item2"> Black coffee - $3</label><br>
+        <input type="checkbox" id="item3" name="sunflower" value="Boat">
+        <label for="item3">Iced coffee - $7</label><br><br>
+      </div>
+      <div id="second_cup_shop" style="display:none">
+        <h1> Store Items</h1>
+        <input type="checkbox" id="item1" name="tulip" value="Bike">
+        <label for="item1"> Black coffee - $3</label><br>
+        <input type="checkbox" id="item2" name="roses" value="Car">
+        <label for="item2"> Iced Coffee - $4</label><br>
+        <input type="checkbox" id="item3" name="sunflower" value="Boat">
+        <label for="item3">Iced capp - $4</label><br><br>
+      </div>
+      
+      
+      
+      
+      
+      
+      
       <br/>
       <input type="submit" value="Submit">
     </form>
     
 
-    <div id="map"></div>
+    
 
 
 
