@@ -25,6 +25,9 @@ p{
 
 /*about us*/
 #aboutUs{
+  
+  left: 0;
+  bottom: 0;
   background-color: #88bbd6;
   border-radius: 6px;
   text-align: center;
@@ -83,4 +86,9 @@ p{
 }
 #menu ul ul{
   top: 0;
+}
+
+#map{
+  height: 500px;
+  width: 100%;
 }

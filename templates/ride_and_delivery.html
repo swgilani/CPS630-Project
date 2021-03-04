@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Plan for Smart Services(PS2)</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
+    <script src="../scripts/location.js"></script>
+  </head>
+
+  <body>
+    
+    <ul id = "menu">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="#">System Logo</a></li>
+      <li><a href="aboutus.html">About us</a></li>
+      <li><a href="contactus.html">Contact us</a></li>
+      <li style="float:right"><a href="signup.html">Sign up</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li style="float:right"><a href="#">Shopping Cart</a></li>
+      <li><a href="#">Type of Services</a>
+        <ul>
+          <li><a href="rideshare.html">Rideshare</a></li>
+          <li><a href="ride_and_delivery.html">Ride & Delivery</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <br><br>
+    <h1>Ride & Deliveries</h1>
+    <br><br>
+
+    
+    <form action="">
+      <label for="fname">Pickup location</label><br>
+      <input type="text" id="start"><br>
+
+      <label for="lname">Where to?</label><br>
+      <input type="text" id="end"><br><br>
+
+      <label for="start">Date</label>
+      <input type="date" id="date" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31"><br/>
+
+      <label for="appt">Pickup time</label>
+      <input type="time" id="time" name="appt" required>      
+      <br/>
+      <input type="submit" value="Submit">
+    </form>
+    
+
+    <div id="map"></div>
+
+
+  <footer id="aboutUs">
+    <h2>About us</h2>
+    <p>CPS630-02 Group 13:</p>
+    <p>Syed Gilani 500774969</p>
+    <p>Aaron Ooi 500840798</p>
+    <p>Rui Qi Wang 500841896</p>
+    <p>Ke Zhang 500832394</p>
+  </footer>
+
+
+
+
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?
+key=AIzaSyDnTsfcAT5zS8NQ5d2QcxIpcU3w6835QbI&callback=initMap">
+</script>
+  </body>
+</html>
