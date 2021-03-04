@@ -1,8 +1,21 @@
-/* basic elements */
+button{
+  background-color:#31708e;
+  border: none;
+  color: #f7f9fb;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Georgia', serif;
+  font-style: normal;
+  font-size: 1.0em;
+  text-align: center;
+  text-decoration: none;
+}
+
 html{
   background-color: #e9e9e9;
   margin: 0;
   padding: 0;
+  overflow:hidden;
 }
 h1{
   color:#687864;
@@ -18,21 +31,28 @@ h2{
   font-style: normal;
   font-size: 1.5em;
 }
-p{
-  color: #e9e9e9;
-  background-color: #88bbd6;
+h3{
+  color:#e9e9e9;
+  text-align: center;
+  font-family: 'Georgia', serif;
+  font-style: normal;
+  font-size: 1.0em;
 }
 
+table{
+  background-color: #88bbd6;
+  border: 3px solid #a9cce3;
+  border-radius: 6px;
+  color: #e9e9e9;
+  margin: auto;
+  text-align: left;
+}
 /*about us*/
-#aboutUs{
-  
-  left: 0;
-  bottom: 0;
+#aboutUs, #contactUs{
   background-color: #88bbd6;
   border-radius: 6px;
   text-align: center;
 }
-
 /* menu */
 #menu, #menu ul{
   background-color: #31708e;
@@ -52,13 +72,13 @@ p{
   position: relative;
 }
 #menu a{
+  color: #f7f9fb;
   float: left;
-  padding: 15px;
   font-family: 'Georgia', serif;
   font-style: normal;
   font-size: 1.0em;
   text-decoration: none;
-  color: #f7f9fb;
+  padding: 15px;
 }
 #menu li:hover > a{
   background: #5085a5;
