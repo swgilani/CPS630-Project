@@ -10,13 +10,13 @@ button{
   text-align: center;
   text-decoration: none;
 }
-
 html{
   background-color: #e9e9e9;
   margin: 0;
   padding: 0;
   overflow:hidden;
 }
+
 h1{
   color:#687864;
   text-align: center;
@@ -38,7 +38,16 @@ h3{
   font-style: normal;
   font-size: 1.0em;
 }
-
+p{
+  background-color: #88bbd6;
+  color: #e9e9e9;
+  margin: auto;
+  width:95%;
+}
+p::first-letter {
+  font-size: 200%;
+  color: #5085a5;
+}
 table{
   background-color: #88bbd6;
   border: 3px solid #a9cce3;
