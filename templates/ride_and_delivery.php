@@ -8,7 +8,7 @@
   </head>
 
   <body>
-  
+  <?php include '../scripts/store_delivery_information.php';?>
     <ul id = "menu">
       <li><a href="../index.html">Home</a></li>
       <li><a href="#">System Logo</a></li>
@@ -16,11 +16,11 @@
       <li><a href="contactus.html">Contact Us</a></li>
       <li style="float:right"><a href="signup.html">Sign up</a></li>
       <li><a href="reviews.html">Reviews</a></li>
-      <li style="float:right"><a href="#">Shopping Cart</a></li>
+      <li style="float:right"><a href="login.html">Login</a></li>
       <li><a href="#">Type of Services</a>
         <ul>
-          <li><a href="rideshare.html">Rideshare</a></li>
-          <li><a href="ride_and_delivery.html">Ride & Delivery</a></li>
+          <li><a href="rideshare.php">Rideshare</a></li>
+          <li><a href="ride_and_delivery.php">Ride & Delivery</a></li>
         </ul>
       </li>
     </ul>
@@ -34,12 +34,13 @@
     <!-- Shows the google maps -->
     <div id="map"></div>
 
-
+   
     <!-- Form with data that will be posted to PHP, and then to our database-->
+    
     <form action="" method="POST">
       <!-- Store selection -->
       <label for="store_selection">Select a store</label><br>
-        <select name="shops" id="start" onchange="show_items();">
+        <select  name="shop" id="start" onchange="show_items();" required>
           <option hidden disabled selected value> -- select an option -- </option>
           <option id="forest_of_flowers" value="Forest of Flowers Mississauga">Forest of Flowers (Florist)</option>
           <option id="flower_creations_mississauga" value="Flower Creations Mississauga">Flower Creations (Florist)</option>
@@ -51,24 +52,20 @@
 
         <br>
         <!-- Destination selection -->
-      <label for="fname">Where to?</label><br>
-      <input type="text" id="end"><br>
+      <label for="destination">Where to?</label><br>
+      <input type="text" id="end" name="destination" required><br>
         <!-- Time selection -->
-      <label for="start">Date</label>
-      <input type="date" id="date" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31"><br/>
+      <label for="trip-start">Date</label>
+      <input type="date" id="date" name="trip-start" required ><br/>
 
       <label for="appt">Pickup time</label>
-      <input type="time" id="time" name="appt" required>      
+      <input type="time" id="time" value="" name="appt" required>      
       <br/>
-      <input type="submit" value="Submit">
+      <input type="submit" value="Submit" name="submit">
     </form>
+
+
     
-
-    
-
-
-
-
 
 
 

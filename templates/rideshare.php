@@ -8,6 +8,7 @@
   </head>
 
   <body>
+  <?php include '../scripts/store_rideshare_information.php';?>
     <ul id = "menu">
       <li><a href="../index.html">Home</a></li>
       <li><a href="#">System Logo</a></li>
@@ -15,11 +16,11 @@
       <li><a href="contactus.html">Contact Us</a></li>
       <li style="float:right"><a href="signup.html">Sign up</a></li>
       <li><a href="reviews.html">Reviews</a></li>
-      <li style="float:right"><a href="#">Shopping Cart</a></li>
+      <li style="float:right"><a href="login.html">Login</a></li>
       <li><a href="#">Type of Services</a>
         <ul>
-          <li><a href="rideshare.html">Rideshare</a></li>
-          <li><a href="ride_and_delivery.html">Ride & Delivery</a></li>
+          <li><a href="rideshare.php">Rideshare</a></li>
+          <li><a href="ride_and_delivery.php">Ride & Delivery</a></li>
         </ul>
       </li>
     </ul>
@@ -29,41 +30,26 @@
     <br><br>
 
     <div id="map"></div>
-    <form action="">
-      <label for="fname">Pickup location</label><br>
-      <input type="text" id="start"><br>
+    <form action="" method="POST">
+      <label for="source">Pickup location</label><br>
+      <input type="text" id="start" name="source" required><br>
 
-      <label for="lname">Where to?</label><br>
-      <input type="text" id="end"><br><br>
+      <label for="destination">Where to?</label><br>
+      <input type="text" id="end" name="destination" required><br><br>
 
-      <label for="start">Date</label>
-      <input type="date" id="date" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31"><br/>
+      <label for="date">Date</label>
+      <input type="date" id="date" name="date" required><br/>
 
       <label for="appt">Pickup time</label>
       <input type="time" id="time" name="appt" required>      
       <br/>
 
-      <input type="radio" id="car1"  value="car1">
-      <label for="car1">Car 1</label><label for="male">Price 1</label>
       <br>
-      <input type="radio" id="car2"  value="car2">
-      <label for="car2">Car 2</label><label for="female">Price 2</label>
-      <br>
-      <input type="radio" id="car3"  value="car3">
-      <label for="car3">Car 3</label><label for="other">Price 3</label>
-
-      
-
-
-      <br>
-      <input type="submit" value="Submit">
+      <input type="submit" value="Submit" name="submit">
     </form>
     
 
     
-
-
-
 
 
 
