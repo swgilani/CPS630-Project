@@ -10,7 +10,7 @@
     $_SESSION['trip_start'] = $_POST['trip-start'];
     $_SESSION['appt_time'] = $_POST['appt'];
 
-    header('Location: http://localhost/CPS630-Project/templates/ride_and_delivery_checkout.php');
+    header('Location: ride_and_delivery_checkout.php');
     }
 
 
