@@ -10,6 +10,6 @@
     $_SESSION['date'] = $_POST['date'];
     $_SESSION['appt'] = $_POST['appt'];
 
-    header('Location: http://localhost/CPS630-Project/templates/rideshare_checkout.php');
+    header('Location: rideshare_checkout.php');
     }
 

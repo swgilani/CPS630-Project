@@ -4,24 +4,14 @@
     <meta charset="utf-8">
     <title>Plan for Smart Services(PS2)</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-      function aboutUs() {
-        var aboutUs = document.getElementById("aboutUs");
-        if (aboutUs.style.display=="none") {
-          aboutUs.style.display="block";
+      function search() {
+        var search = document.getElementById("search");
+        if (search.style.display=="none") {
+          search.style.display="block";
         }
-        else {
-          aboutUs.style.display="none";
-        }
-      }
-      function contactUs() {
-        var contactUs = document.getElementById("contactUs");
-        if (contactUs.style.display=="none") {
-          contactUs.style.display="block";
-        }
-        else {
-          contactUs.style.display="none";
+        else{
+          search.style.display="none";
         }
       }
     </script>
@@ -42,14 +32,18 @@
           <li><a href="templates/ride_and_delivery.php">Ride & Delivery</a></li>
         </ul>
       </li>
+      <li style="float:right"><a href="#"><span onclick="search()">Search</span></a></li>
     </ul>
-
+    
+    <div id="search" style="float:right; display:none;">
+      <form action="php/search.php">
+        <input type="text" placeholder="Search..." name="search">
+        <button type="submit">submit</button>
+      </form>
+    </div>
+    
     <br><br>
     <h1>Plan for Smart Services</h1>
-    <br><br>
-
- 
-  <br>
-  
+    <img src="img/logo.png" class="center">  
   </body>
 </html>
