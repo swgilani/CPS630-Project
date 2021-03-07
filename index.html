@@ -4,6 +4,17 @@
     <meta charset="utf-8">
     <title>Plan for Smart Services(PS2)</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+    <script>
+      function search() {
+        var search = document.getElementById("search");
+        if (search.style.display=="none") {
+          search.style.display="block";
+        }
+        else{
+          search.style.display="none";
+        }
+      }
+    </script>
   </head>
 
   <body>
@@ -21,8 +32,16 @@
           <li><a href="templates/ride_and_delivery.php">Ride & Delivery</a></li>
         </ul>
       </li>
+      <li style="float:right"><a href="#"><span onclick="search()">Search</span></a></li>
     </ul>
-
+    
+    <div id="search" style="float:right; display:none;">
+      <form action="php/search.php">
+        <input type="text" placeholder="Search..." name="search">
+        <button type="submit">submit</button>
+      </form>
+    </div>
+    
     <br><br>
     <h1>Plan for Smart Services</h1>
     <img src="img/logo.png" class="center">  
