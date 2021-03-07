@@ -1,7 +1,7 @@
 <?php
 //Connect to Database
 $user = 'root';
-$pass = '';
+$pass = '123';
 $db = 'CPS630db';
 $dbc = new mysqli('localhost', $user, $pass, $db) or die("Unable to Connect");
 
@@ -61,14 +61,15 @@ if($tableCheck == FALSE){
         car_model VARCHAR(40),
         /*car_code VARCHAR(11), not sure if we need a car code because we have cardID*/
         availability_code INT,
+        priceID DECIMAL(38,2),
         PRIMARY KEY(carID)
         )";
     $result = mysqli_query($dbc,$sql) or die("Unable to create Car Table $sql");
     //Insert data into Car table
-    $sql = "INSERT INTO car_table (car_model,availability_code) 
-    VALUES ('Tesla Model S','1'), ('Tesla Model 3','1'), ('Tesla Model X','1'),
-    ('Mercedes C300','1'), ('Mercedes C63','1'), ('Mercedes G550','1'),
-    ('Honda Civic','1'), ('Honda Accord','1'), ('Toyota Prius','1');
+    $sql = "INSERT INTO car_table (car_model,availability_code,priceID) 
+    VALUES ('Tesla Model S','1',59.99), ('Tesla Model 3','1',67.89), ('Tesla Model X','1',89.99),
+    ('Mercedes C300','1', 49.99), ('Mercedes C63','1', 54.99), ('Mercedes G550','1', 79.99),
+    ('Honda Civic','1', 29.99), ('Honda Accord','1', 21.99), ('Toyota Prius','1', 19.99);
     ";
 
     $result = mysqli_query($dbc,$sql) or die("Error inserting data to Car Table");

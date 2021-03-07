@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<?php session_start(); ?>
+<?php 
+session_start(); 
+require_once('../scripts/db_connect.php');
+?>
 <html>
 <head>
 	  <meta charset="utf-8">
@@ -9,9 +12,10 @@
  
   <link rel="stylesheet" type="text/css" href="../css/shopping_cart.css">
   <script src="../scripts/shopping_cart.js"></script>
+  <script src="../scripts/calculate_price.js"></script>
 </head>
-<body>
-
+<body onload="total_price(); calculate_ride_distance();">
+<?php include '../scripts/confirm_order.php';?>
 
 <ul id = "menu">
       <li><a href="../index.html">Home</a></li>
@@ -31,36 +35,44 @@
 
     <br><br>
 
-    <h1><?php  if (isset($_SESSION['source']) && isset($_SESSION['destination'])) {echo $_SESSION['source'] . " - " . $_SESSION['destination'];} else { echo "Please try again";} ?></h1>
+    <h1><?php  if (isset($_SESSION['source']) && isset($_SESSION['destination'])) {echo strtoupper($_SESSION['source']) . " ➜ " . strtoupper($_SESSION['destination']);} else { echo "Please try again";} ?></h1>
 
 
 
 
    
-  
-
 
   <ul style="list-style-type:none;" id="drag" name="items">
-       <li id = "d1" name="item1" value="first"  draggable="true" ondragstart="drag(event)"><input type='hidden' name='item1' value='first item,price'/>
-       First Car - $Price<img src="https://media.wired.com/photos/5d09594a62bcb0c9752779d9/1:1/w_1500,h_1500,c_limit/Transpo_G70_TA-518126.jpg"  width="35" height="35"></li>
-       <li id = "d2" name="item2" value="second"  draggable="true" ondragstart="drag(event)"><input type='hidden' name='item2' value='second item,price'/> Second Car - $Price
-       <img src="https://media.wired.com/photos/5d09594a62bcb0c9752779d9/1:1/w_1500,h_1500,c_limit/Transpo_G70_TA-518126.jpg" width="35" height="35"></li>
-       <li id = "d3" name="item3" value="third"  draggable="true" ondragstart="drag(event)"><input type='hidden' name='item3' value='third item,price'/> Third Car - $Price
-       <img src="https://media.wired.com/photos/5d09594a62bcb0c9752779d9/1:1/w_1500,h_1500,c_limit/Transpo_G70_TA-518126.jpg" width="35" height="35"></li>
-       
+
+  <?php 
+  $query = 'SELECT car_model, priceID FROM car_table';
+  $response = @mysqli_query($dbc, $query);
+  if ($response){
+    $count = 0;
+    while ($row = mysqli_fetch_array($response)){
+      echo "<li id ='".$count."' name='first' value='first'  draggable='true' ondragstart='drag(event)'><input type='hidden' name='item[]' value='".$row['car_model']. ",". $row['priceID']."'/>" . 
+      $row['car_model'] . " - $" . $row['priceID'] .  "<img src='https://media.wired.com/photos/5d09594a62bcb0c9752779d9/1:1/w_1500,h_1500,c_limit/Transpo_G70_TA-518126.jpg'  width='35' height='35'></li>";
+      $count++;
+    }
+  }
+  ?>
+  
    </ul>
   
   
   
   
   <form action="" method="POST">
-	<div class="cart" ondrop="drop(event)" ondragover="allowDrop(event)">
+	<div id="cart" ondrop="drop(event); total_price();" ondragover="allowDrop(event)">
 		<h1>Shopping Cart</h1>
 		
     <p>Date: <?php  if (isset($_SESSION['date'])) {echo $_SESSION['date'];} ?></p>
     <p>Time of pickup: <?php  if (isset($_SESSION['appt'])) {echo $_SESSION['appt'];} ?> </p>
-    
-    <input type="submit" value="Confirm Order" name="submit" id="button1">
+    <p id="distance"></p>
+    <p class="total_price " id="items_price"></p>
+    <input type="hidden" value="" name="total_price" id="form_price" />
+    <input type="hidden" value="" name="total_distance" id="form_distance" />
+    <input type="submit" value="Confirm Order" name="submit" class="confirm_button">
 	</div>
   </form>
 
@@ -79,7 +91,8 @@
  
 
 
-  <?php session_destroy(); ?>
+  <?php //session_destroy();
+      ?>
     <br><br>
 
  

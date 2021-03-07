@@ -22,7 +22,7 @@
     text-align:center;
     color:#c3c3c3;
 }
-.cart{
+#cart{
     position:fixed;
     right:0;
     bottom:0;
@@ -116,10 +116,18 @@ textarea {
     outline: 10;
     height: auto;
 }
-#button1{
+.confirm_button{
 	
     position: absolute;
     bottom:10px;
     left:50%;
     
     }
+.total_price{
+	
+      position: absolute;
+      bottom:25px;
+      left:50%;
+      
+  }
+  

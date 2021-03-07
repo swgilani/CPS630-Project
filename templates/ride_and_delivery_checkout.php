@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<?php session_start(); ?>
+<?php session_start();
+require_once('../scripts/db_connect.php'); ?>
 <html>
 <head>
+    
 	  <meta charset="utf-8">
     <title>Plan for Smart Services(PS2)</title>
 	
@@ -9,8 +11,10 @@
  
   <link rel="stylesheet" type="text/css" href="../css/shopping_cart.css">
   <script src="../scripts/shopping_cart.js"></script>
+  <script src="../scripts/calculate_price.js"></script>
 </head>
-<body>
+<body onload="total_price();">
+
 
 
 <ul id = "menu">
@@ -35,36 +39,63 @@
 
 
 
-
-   
-  
-
-
   <ul style="list-style-type:none;" id="drag" name="items">
-       <li id = "d1" name="item1" value="first"  draggable="true" ondragstart="drag(event)"><input type='hidden' name='item1' value='first item,price'/>
-       First Item - $Price<img src="https://cdn.th3rdwave.coffee/merchants/3kI3aupy/3kI3aupy-md_2x.jpg"  width="35" height="35"></li>
-       <li id = "d2" name="item2" value="second"  draggable="true" ondragstart="drag(event)"><input type='hidden' name='item2' value='second item,price'/> Second Item - $Price
-       <img src="https://cdn.th3rdwave.coffee/merchants/3kI3aupy/3kI3aupy-md_2x.jpg" width="35" height="35"></li>
-       <li id = "d3" name="item3" value="third"  draggable="true" ondragstart="drag(event)"><input type='hidden' name='item3' value='third item,price'/> Third Item - $Price
-       <img src="https://cdn.th3rdwave.coffee/merchants/3kI3aupy/3kI3aupy-md_2x.jpg" width="35" height="35"></li>
-       
+
+  <?php 
+  if (isset($_SESSION['store_name'])) {
+    //echo $_SESSION['store_name']; 
+    $query_florist1 = 'SELECT store_code, flower_name, price FROM flower_table WHERE store_code = 1'; //Forest of Flowers
+    $query_florist2 = 'SELECT store_code, flower_name, price FROM flower_table WHERE store_code = 2'; //Flower Creations
+    $query_florist3 = 'SELECT store_code, flower_name, price FROM flower_table WHERE store_code = 3'; //Oakville Flower
+    $query_coffee1 = 'SELECT store_code, coffee_name, price FROM coffee_table WHERE store_code = 1';  //Tim hortons
+    $query_coffee2 = 'SELECT store_code, coffee_name, price FROM coffee_table WHERE store_code = 2'; //Starbucks
+    $query_coffee3 = 'SELECT store_code, coffee_name, price FROM coffee_table WHERE store_code = 3';   //Second cup
+
+    if ($_SESSION['store_name'] == 'Forest of Flowers Mississauga'){ $response = @mysqli_query($dbc, $query_florist1); }
+    else if ($_SESSION['store_name'] == 'Flower Creations Mississauga'){ $response = @mysqli_query($dbc, $query_florist2);  }
+    else if ($_SESSION['store_name'] == 'Oakville Florist Shop'){ $response = @mysqli_query($dbc, $query_florist3);  }
+    else if ($_SESSION['store_name'] == 'Tim Hortons Mississauga'){ $response = @mysqli_query($dbc, $query_coffee1);  }
+    else if ($_SESSION['store_name'] == 'Starbucks Mississauga'){ $response = @mysqli_query($dbc, $query_coffee2);  }
+    else if ($_SESSION['store_name'] == 'Second Cup Mississauga'){$response = @mysqli_query($dbc, $query_coffee3);  }
+
+
+    if ($response){
+      $count = 0;
+      while ($row = mysqli_fetch_array($response)){
+        
+        echo "<li id = '".$count."' name='item1' value='first'  draggable='true' ondragstart='drag(event)'><input type='hidden' name='item[]' value='".$row['flower_name']. ",". $row['price']."'/>" .
+        $row['flower_name'] . " - $" . $row['price'] .  "<img src='https://cdn.th3rdwave.coffee/merchants/3kI3aupy/3kI3aupy-md_2x.jpg'  width='35' height='35'></li>";
+        $count++;
+
+      }
+    }
+ 
+  }
+   else {
+     echo "No items found";
+    }
+  ?>
+
+  
    </ul>
   
   
   
-  
   <form action="" method="POST">
-	<div class="cart" ondrop="drop(event)" ondragover="allowDrop(event)">
+	<div id="cart" ondrop="drop(event); total_price();" ondragover="allowDrop(event)">
 		<h1>Shopping Cart</h1>
 		
     <p>Delivery Date: <?php  if (isset($_SESSION['trip_start'])) {echo $_SESSION['trip_start'];} ?></p>
     <p>Time for delivery: <?php  if (isset($_SESSION['appt_time'])) {echo $_SESSION['appt_time'];} ?> </p>
     <p>Destination: <?php  if (isset($_SESSION['destination'])) {echo $_SESSION['destination'];} ?> </p>
-    <input type="submit" value="Confirm Order" name="submit" id="button1">
+    <p class="total_price " id="items_price"></p>
+    <input type="hidden" value="" name="total_price" id="form_price" />
+    <input type="submit" value="Confirm Order" name="submit" class="confirm_button">
 	</div>
   </form>
 
   <?php
+  echo "shit below is for testing purposes";
   pre_r($_POST);
   ?>
 
@@ -79,7 +110,8 @@
  
 
 
-  <?php session_destroy(); ?>
+  <?php 
+  ?>
     <br><br>
 
  
