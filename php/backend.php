@@ -1,9 +1,5 @@
 <?php
-//Connect to Database
-$user = 'root';
-$pass = '';
-$db = 'CPS630db';
-$dbc = new mysqli('localhost', $user, $pass, $db) or die("Unable to Connect");
+require 'dbc.php';
 
 //If order_table doesn't exist, create table
 $tableCheck = mysqli_query($dbc,'select 1 from `order_table` LIMIT 1');
@@ -28,15 +24,23 @@ if($tableCheck == FALSE){
         userID INT(11) NOT NULL UNIQUE AUTO_INCREMENT,
         first_name VARCHAR(18),
         last_name VARCHAR(18),
-        phone_number INT(10),
+        phone_number VARCHAR(12),
         email VARCHAR(50),
-        home_address VARCHAR(30),
-        city VARCHAR(30),
-        login_id VARCHAR(50),
-        pw VARCHAR(30),
+        postalCode VARCHAR(6),
+        pw VARCHAR(120),
         balance DECIMAL(38,2)
         )";
     $result = mysqli_query($dbc,$sql) or die("Unable to create User Table $sql");
+}
+
+//If session_table doesn't exist, create table
+$tableCheck = mysqli_query($dbc,'select 1 from `session_table` LIMIT 1');
+if($tableCheck == FALSE){
+    $sql = "CREATE TABLE session_table(
+        userID INT(11) NOT NULL UNIQUE,
+        email VARCHAR(50),
+        )";
+    $result = mysqli_query($dbc,$sql) or die("Unable to create Session Table $sql");
 }
 
 //If trip_table doesn't exist, create table
@@ -115,4 +119,5 @@ if($tableCheck == FALSE){
 }
 
 echo"Successful Connection";
+$dbc -> close();
 ?>
