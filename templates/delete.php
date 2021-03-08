@@ -8,6 +8,7 @@
   </head>
 
   <body>
+    <h2>Delete</h2>
     <p style="width:auto;">Please choose a table to delete data:</p>
 
       <form action="#" method="POST">
