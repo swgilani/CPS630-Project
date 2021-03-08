@@ -30,10 +30,10 @@ if(!isset($_SESSION))
       <li><a href="../index.php">Home</a></li>
       <li><a href="#">db Maintain</a>
         <ul>
-          <li><a href="#">Insert</a></li>
-          <li><a href="#">Delete</a></li>
-          <li><a href="#">Select</a></li>
-          <li><a href="#">Update</a></li>
+          <li><a href="insert.php">Insert</a></li>
+          <li><a href="delete.php">Delete</a></li>
+          <li><a href="select.php">Select</a></li>
+          <li><a href="update.php">Update</a></li>
         </ul>
       </li>
       <li><a href="aboutus.php">About Us</a></li>
@@ -42,7 +42,7 @@ if(!isset($_SESSION))
       <?php if (isset($_SESSION['user'])){
         echo "<li style='float:right'><a href='../scripts/logout.php'>Sign Out</a></li>";
         echo "<li style='float:right'><a href=''>Welcome ". $_SESSION['user'] ."</a></li>";
-        
+        echo '<li style="float:right"><a href="#"><span onclick="search()">Search</span></a></li>';
       }
       else {
         echo "<li style='float:right'><a href='signup.php'>Sign Up</a></li>";
@@ -54,7 +54,7 @@ if(!isset($_SESSION))
         echo "<li style='float:right'><a href='login.php'>Login</a></li>";
       }
       ?>
-      <li style="float:right"><a href="#"><span onclick="search()">Search</span></a></li>
+      <!-- <li style="float:right"><a href="#"><span onclick="search()">Search</span></a></li> -->
       <li><a href="#">Type of Services</a>
         <ul>
           <li><a href="rideshare.php">Rideshare</a></li>
@@ -63,20 +63,22 @@ if(!isset($_SESSION))
       </li>
       
     </ul>
-
-    <div id="search" style="float:right; display:none;">
-      <form action="#" method="POST">
-        <input type="text" placeholder="Search..." name="search">
-        <button name="submit_result" type="submit">submit</button>
+    
+    <div id='search' style='float:right; display:none;'>
+      <form action='#' method='POST'>
+        <input type='text' placeholder='Search...' name='search'>
+        <button name='submit_result' type='submit'>submit</button>
       </form>
     </div>
    <br><br>
+   
     
     <div style="text-align:right;">
     <?php
     if (isset($_POST['submit_result'])){
       $search = $_POST["search"];
-      $sql = "SELECT * FROM order_table WHERE order_ID =" . $search;
+      $userID = $_SESSION['userID'];
+      $sql ="SELECT * FROM order_table WHERE order_ID='$search' AND userID='$userID'";
       //select order_id from order_table where userid = $userd, order_id = $order_id
       $result = $dbc->query($sql);
       $info = " ";
@@ -86,7 +88,7 @@ if(!isset($_SESSION))
           echo "Your order ID is ".$search." has completed.";
         }
       } else {
-        echo "Cannot find order ID ".$search.", please try again.";
+        echo "You don't have an order with the ID ".$search.", please try again.";
       }
     }
     ?>
