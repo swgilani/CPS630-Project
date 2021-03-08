@@ -12,26 +12,88 @@ require_once('../scripts/db_connect.php'); ?>
   <link rel="stylesheet" type="text/css" href="../css/shopping_cart.css">
   <script src="../scripts/shopping_cart.js"></script>
   <script src="../scripts/calculate_price.js"></script>
+  <script>
+      function search() {
+        var search = document.getElementById("search");
+        if (search.style.display=="none") {
+          search.style.display="block";
+        }
+        else{
+          search.style.display="none";
+        }
+      }
+    </script>
 </head>
 <body onload="total_price();">
+<?php include '../scripts/confirm_order_ridendelivery.php';?>
 
 
 
 <ul id = "menu">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="#">System Logo</a></li>
-      <li><a href="aboutus.html">About Us</a></li>
-      <li><a href="contactus.html">Contact Us</a></li>
-      <li style="float:right"><a href="signup.html">Sign up</a></li>
-      <li><a href="reviews.html">Reviews</a></li>
-      <li style="float:right"><a href="login.html">Login</a></li>
+      <li><a href="../index.php">Home</a></li>
+      <li><a href="#">db Maintain</a>
+        <ul>
+          <li><a href="#">Insert</a></li>
+          <li><a href="#">Delete</a></li>
+          <li><a href="#">Select</a></li>
+          <li><a href="#">Update</a></li>
+        </ul>
+      </li>
+      <li><a href="aboutus.php">About Us</a></li>
+      <li><a href="contactus.php">Contact Us</a></li>
+      
+      <?php if (isset($_SESSION['user'])){
+        echo "<li style='float:right'><a href='../scripts/logout.php'>Sign Out</a></li>";
+        echo "<li style='float:right'><a href=''>Welcome ". $_SESSION['user'] ."</a></li>";
+        
+      }
+      else {
+        echo "<li style='float:right'><a href='signup.php'>Sign Up</a></li>";
+      }
+      ?>
+      
+      <li><a href="reviews.php">Reviews</a></li>
+      <?php if (!isset($_SESSION['user'])){
+        echo "<li style='float:right'><a href='login.php'>Login</a></li>";
+      }
+      ?>
+      <li style="float:right"><a href="#"><span onclick="search()">Search</span></a></li>
       <li><a href="#">Type of Services</a>
         <ul>
           <li><a href="rideshare.php">Rideshare</a></li>
           <li><a href="ride_and_delivery.php">Ride & Delivery</a></li>
         </ul>
       </li>
+      
     </ul>
+
+    <div id="search" style="float:right; display:none;">
+      <form action="#" method="POST">
+        <input type="text" placeholder="Search..." name="search">
+        <button name="submit_result" type="submit">submit</button>
+      </form>
+    </div>
+  
+
+    <div style="text-align:right;">
+    <?php
+    if (isset($_POST['submit_result'])){
+      $search = $_POST["search"];
+      $sql = "SELECT * FROM order_table WHERE order_ID =" . $search;
+      //select order_id from order_table where userid = $userd, order_id = $order_id
+      $result = $dbc->query($sql);
+      $info = " ";
+      if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+          echo "Your order ID is ".$search." has completed.";
+        }
+      } else {
+        echo "Cannot find order ID ".$search.", please try again.";
+      }
+    }
+    ?>
+  </div>
 
     <br><br>
 
@@ -51,16 +113,20 @@ require_once('../scripts/db_connect.php'); ?>
     $query_coffee2 = 'SELECT store_code, coffee_name, price FROM coffee_table WHERE store_code = 2'; //Starbucks
     $query_coffee3 = 'SELECT store_code, coffee_name, price FROM coffee_table WHERE store_code = 3';   //Second cup
 
-    if ($_SESSION['store_name'] == 'Forest of Flowers Mississauga'){ $response = @mysqli_query($dbc, $query_florist1); }
-    else if ($_SESSION['store_name'] == 'Flower Creations Mississauga'){ $response = @mysqli_query($dbc, $query_florist2);  }
-    else if ($_SESSION['store_name'] == 'Oakville Florist Shop'){ $response = @mysqli_query($dbc, $query_florist3);  }
-    else if ($_SESSION['store_name'] == 'Tim Hortons Mississauga'){ $response = @mysqli_query($dbc, $query_coffee1);  }
-    else if ($_SESSION['store_name'] == 'Starbucks Mississauga'){ $response = @mysqli_query($dbc, $query_coffee2);  }
-    else if ($_SESSION['store_name'] == 'Second Cup Mississauga'){$response = @mysqli_query($dbc, $query_coffee3);  }
+    $checkFlower = false;
+
+    if ($_SESSION['store_name'] == 'Forest of Flowers Mississauga'){ $response = @mysqli_query($dbc, $query_florist1); $checkFlower = true; }
+    else if ($_SESSION['store_name'] == 'Flower Creations Mississauga'){ $response = @mysqli_query($dbc, $query_florist2); $checkFlower = true; }
+    else if ($_SESSION['store_name'] == 'Oakville Florist Shop'){ $response = @mysqli_query($dbc, $query_florist3); $checkFlower = true; }
+    else if ($_SESSION['store_name'] == 'Tim Hortons Mississauga'){ $response = @mysqli_query($dbc, $query_coffee1); $checkFlower = false; }
+    else if ($_SESSION['store_name'] == 'Starbucks Mississauga'){ $response = @mysqli_query($dbc, $query_coffee2); $checkFlower = false; }
+    else if ($_SESSION['store_name'] == 'Second Cup Mississauga'){$response = @mysqli_query($dbc, $query_coffee3); $checkFlower = false; }
 
 
     if ($response){
       $count = 0;
+
+      if ($checkFlower) {
       while ($row = mysqli_fetch_array($response)){
         
         echo "<li id = '".$count."' name='item1' value='first'  draggable='true' ondragstart='drag(event)'><input type='hidden' name='item[]' value='".$row['flower_name']. ",". $row['price']."'/>" .
@@ -68,6 +134,14 @@ require_once('../scripts/db_connect.php'); ?>
         $count++;
 
       }
+    }
+    else if (!$checkFlower) {
+      while ($row = mysqli_fetch_array($response)){
+      echo "<li id = '".$count."' name='item1' value='first'  draggable='true' ondragstart='drag(event)'><input type='hidden' name='item[]' value='".$row['coffee_name']. ",". $row['price']."'/>" .
+        $row['coffee_name'] . " - $" . $row['price'] .  "<img src='https://cdn.th3rdwave.coffee/merchants/3kI3aupy/3kI3aupy-md_2x.jpg'  width='35' height='35'></li>";
+        $count++;
+      }
+    }
     }
  
   }

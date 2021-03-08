@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
-require_once('db/dbc.php'); ?>
+require_once('db/dbc.php');
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}  ?>
 <html>
   <head>
     <meta charset="utf-8">
@@ -21,27 +25,41 @@ require_once('db/dbc.php'); ?>
 
   <body>
     <ul id = "menu">
-      <li><a href="index.html">Home</a></li>
+      <li><a href="index.php">Home</a></li>
       <li><a href="#">db Maintain</a>
         <ul>
-          <li><a href="#">Insert</a></li>
-          <li><a href="#">Delete</a></li>
-          <li><a href="#">Select</a></li>
-          <li><a href="#">Update</a></li>
+          <li><a href="templates/insert.php">Insert</a></li>
+          <li><a href="templates/delete.php">Delete</a></li>
+          <li><a href="templates/select.php">Select</a></li>
+          <li><a href="templates/update.php">Update</a></li>
         </ul>
       </li>
-      <li><a href="templates/aboutus.html">About Us</a></li>
-      <li><a href="templates/contactus.html">Contact Us</a></li>
-      <li style="float:right"><a href="templates/signup.html">Sign up</a></li>
+      <li><a href="templates/aboutus.php">About Us</a></li>
+      <li><a href="templates/contactus.php">Contact Us</a></li>
+      
+      <?php if (isset($_SESSION['user'])){
+        echo "<li style='float:right'><a href='scripts/logout.php'>Sign Out</a></li>";
+        echo "<li style='float:right'><a href=''>Welcome ". $_SESSION['user'] ."</a></li>";
+        
+      }
+      else {
+        echo "<li style='float:right'><a href='templates/signup.php'>Sign Up</a></li>";
+      }
+      ?>
+      
       <li><a href="templates/reviews.html">Reviews</a></li>
-      <li style="float:right"><a href="templates/login.html">Login</a></li>
+      <?php if (!isset($_SESSION['user'])){
+        echo "<li style='float:right'><a href='templates/login.php'>Login</a></li>";
+      }
+      ?>
+      <li style="float:right"><a href="#"><span onclick="search()">Search</span></a></li>
       <li><a href="#">Type of Services</a>
         <ul>
           <li><a href="templates/rideshare.php">Rideshare</a></li>
           <li><a href="templates/ride_and_delivery.php">Ride & Delivery</a></li>
         </ul>
       </li>
-      <li style="float:right"><a href="#"><span onclick="search()">Search</span></a></li>
+      
     </ul>
 
     <div id="search" style="float:right; display:none;">

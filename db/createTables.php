@@ -12,7 +12,7 @@ if($tableCheck == FALSE){
     payment_code INT,
     userID INT, 
     trip_ID INT,
-    flower_ID INT
+    store_name VARCHAR(50)
     )";
 $result = mysqli_query($dbc,$sql) or die("Unable to create Order Table $sql");
 }
@@ -31,16 +31,6 @@ if($tableCheck == FALSE){
         balance DECIMAL(38,2)
         )";
     $result = mysqli_query($dbc,$sql) or die("Unable to create User Table $sql");
-}
-
-//If session_table doesn't exist, create table
-$tableCheck = mysqli_query($dbc,'select 1 from `session_table` LIMIT 1');
-if($tableCheck == FALSE){
-    $sql = "CREATE TABLE session_table(
-        userID INT(11) NOT NULL UNIQUE,
-        email VARCHAR(50),
-        )";
-    $result = mysqli_query($dbc,$sql) or die("Unable to create Session Table $sql");
 }
 
 //If trip_table doesn't exist, create table
@@ -85,15 +75,16 @@ if($tableCheck == FALSE){
     $sql = "CREATE TABLE flower_table(
         flowerID INT(11) NOT NULL UNIQUE AUTO_INCREMENT,
         store_code VARCHAR(11),
+        store_name VARCHAR(40),
         flower_name VARCHAR(30),
         price DECIMAL(38,2)
         )";
     $result = mysqli_query($dbc,$sql) or die("Unable to create Flower Table $sql");
     //Insert data into Flower Table
-    $sql = "INSERT INTO flower_table (store_code,flower_name,price) 
-    VALUES ('1','Roses',10.99), ('1','Violets',9.89), ('1','Daisies',6.59),
-    ('2','Roses',8.99), ('2','Violets',7.89), ('2','Daisies',11.59),
-    ('3','Roses',7.99), ('3','Violets',8.99), ('2','Daisies',10.99);
+    $sql = "INSERT INTO flower_table (store_code,store_name,flower_name,price) 
+    VALUES ('1','Forest of Flowers Mississauga','Roses',10.99), ('1','Forest of Flowers Mississauga','Violets',9.89), ('1','Forest of Flowers Mississauga','Daisies',6.59),
+    ('2','Flower Creations Mississauga','Roses',8.99), ('2','Flower Creations Mississauga','Violets',7.89), ('2','Flower Creations Mississauga','Daisies',11.59),
+    ('3','Oakville Florist Shop','Roses',7.99), ('3','Oakville Florist Shop','Violets',8.99), ('3','Oakville Florist Shop','Daisies',10.99);
     ";
 
     $result = mysqli_query($dbc,$sql) or die("Error inserting data to Flower Table");
@@ -105,15 +96,16 @@ if($tableCheck == FALSE){
     $sql = "CREATE TABLE coffee_table(
         coffeeID INT(11) NOT NULL UNIQUE AUTO_INCREMENT,
         store_code VARCHAR(11),
+        store_name VARCHAR(40),
         coffee_name VARCHAR(30),
         price DECIMAL(38,2)
         )";
     $result = mysqli_query($dbc,$sql) or die("Unable to create Coffee Table $sql");
     //Insert data into Coffee Table
-    $sql = "INSERT INTO coffee_table (store_code,coffee_name,price) 
-    VALUES ('1','Frappuccino',5.99), ('1','Latte',3.89), ('1','Coffee',2.59),
-    ('2','Frappuccino',6.99), ('2','Latte',4.69), ('2','Coffee',2.99),
-    ('3','Frappuccino',5.49), ('3','Latte',3.59), ('3','Coffee',1.99);
+    $sql = "INSERT INTO coffee_table (store_code,store_name,coffee_name,price) 
+    VALUES ('1','Tim Hortons Mississauga','Frappuccino',5.99), ('1','Tim Hortons Mississauga','Latte',3.89), ('1','Tim Hortons Mississauga','Coffee',2.59),
+    ('2','Starbucks Mississauga','Frappuccino',6.99), ('2','Starbucks Mississauga','Latte',4.69), ('2','Starbucks Mississauga','Coffee',2.99),
+    ('3','Second Cup Mississauga','Frappuccino',5.49), ('3','Second Cup Mississauga','Latte',3.59), ('3','Second Cup Mississauga','Coffee',1.99);
     ";
 
     $result = mysqli_query($dbc,$sql) or die("Error inserting data to Coffee Table");
