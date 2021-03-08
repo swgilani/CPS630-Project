@@ -70,7 +70,7 @@ if(!isset($_SESSION))
     </div>
    <br><br>
     <h1>Plan for Smart Services</h1>
-    <img src="../img/logo.png" class="center">
+    <img src="../img/logo.png" class="center" style="width:10%">
 
     <div style="text-align:right;">
     <?php
