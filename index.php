@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<?php
-require_once('db/dbc.php'); ?>
+<?php require_once('db/dbc.php'); ?>
 <html>
   <head>
     <meta charset="utf-8">
@@ -55,7 +54,7 @@ require_once('db/dbc.php'); ?>
     <h1>Plan for Smart Services</h1>
     <img src="img/logo.png" class="center">
 
-    <div style="text-align:right;">
+    <p style="width:auto;float:right;text-align:right;">
     <?php
     if (isset($_POST['submit_result'])){
       $search = $_POST["search"];
@@ -73,6 +72,6 @@ require_once('db/dbc.php'); ?>
       }
     }
     ?>
-  </div>
+  </p>
   </body>
 </html>
