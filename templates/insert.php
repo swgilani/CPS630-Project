@@ -75,7 +75,8 @@ if(!isset($_SESSION))
         <?php
           //DB Table Selection
           if(!isset($_POST['submit_table'])){
-            echo '<select id="insert_select" name="select">
+            echo '<label>Tables:</label>
+            <select id="insert_select" name="select">
             <option value="" disabled selected>Choose option</option>
             <option value="car_table">car table</option>
             <option value="coffee_table">coffee table</option>
@@ -92,7 +93,8 @@ if(!isset($_SESSION))
               //Display different input boxes depending on table
               switch ($selected) {
                 case "car_table":
-                    echo '<select id="insert_select" name="select">
+                    echo '<label>Tables:</label>
+                    <select id="insert_select" name="select">
                     <option value="" disabled selected>Choose option</option>
                     <option value="car_table" selected>car table</option>
                     <option value="coffee_table">coffee table</option>
@@ -115,7 +117,8 @@ if(!isset($_SESSION))
                     <button name="submit_values" type="submit">submit</button>';
                     break;
                 case "coffee_table":
-                  echo '<select id="insert_select" name="select">
+                  echo '<label>Tables:</label>
+                  <select id="insert_select" name="select">
                   <option value="" disabled selected>Choose option</option>
                   <option value="car_table">car table</option>
                   <option value="coffee_table" selected>coffee table</option>
@@ -140,7 +143,8 @@ if(!isset($_SESSION))
                     <button name="submit_values" type="submit">submit</button>';
                     break;
                 case "flower_table":
-                  echo '<select id="insert_select" name="select">
+                  echo '<label>Tables:</label>
+                  <select id="insert_select" name="select">
                   <option value="" disabled selected>Choose option</option>
                   <option value="car_table">car table</option>
                   <option value="coffee_table">coffee table</option>
@@ -165,7 +169,8 @@ if(!isset($_SESSION))
                     <button name="submit_values" type="submit">submit</button>';
                     break;
                 case "order_table":
-                  echo '<select id="insert_select" name="select">
+                  echo '<label>Tables:</label>
+                  <select id="insert_select" name="select">
                   <option value="" disabled selected>Choose option</option>
                   <option value="car_table">car table</option>
                   <option value="coffee_table">coffee table</option>
@@ -196,7 +201,8 @@ if(!isset($_SESSION))
                     <button name="submit_values" type="submit">submit</button>';
                     break;
                  case "trip_table":
-                  echo '<select id="insert_select" name="select">
+                  echo '<label>Tables:</label>
+                  <select id="insert_select" name="select">
                   <option value="" disabled selected>Choose option</option>
                   <option value="car_table">car table</option>
                   <option value="coffee_table">coffee table</option>
@@ -223,7 +229,8 @@ if(!isset($_SESSION))
                     <button name="submit_values" type="submit">submit</button>';
                     break;
                   case "user_table":
-                    echo '<select id="insert_select" name="select">
+                    echo '<label>Tables:</label>
+                    <select id="insert_select" name="select">
                     <option value="" disabled selected>Choose option</option>
                     <option value="car_table">car table</option>
                     <option value="coffee_table">coffee table</option>
@@ -257,7 +264,8 @@ if(!isset($_SESSION))
               
           }else 
           {
-            echo '<select id="insert_select" name="select">
+            echo '<label>Tables:</label>
+            <select id="insert_select" name="select">
             <option value="" disabled selected>Choose option</option>
             <option value="car_table">car table</option>
             <option value="coffee_table">coffee table</option>
