@@ -70,7 +70,7 @@ if(!isset($_SESSION))
     </div>
    <br><br>
     <h1>Plan for Smart Services</h1>
-    <img src="../img/logo.png" class="center">
+    <img src="../img/logo.png" class="center" style="width:10%">
 
     <div style="text-align:right;">
     <?php
@@ -93,8 +93,8 @@ if(!isset($_SESSION))
     ?>
   </div>
 
-
-    <div>
+  <div>
+    <h2>Reviews</h2>
     <p style="width:100%">Rate our overall services.</p>
       <select id="rate">
         <option value="1star">1</option>
@@ -107,7 +107,7 @@ if(!isset($_SESSION))
       <textarea class="form" rows="5"></textarea>
       <br>
       <button type="submit">Submit</button>
-    </div>
+   </div>
 
   </body>
 </html>
