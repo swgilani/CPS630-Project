@@ -80,7 +80,6 @@ if(!isset($_SESSION))
       $sql = "SELECT * FROM order_table WHERE order_ID =" . $search;
       //select order_id from order_table where userid = $userd, order_id = $order_id
       $result = $dbc->query($sql);
-      $info = " ";
       if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
