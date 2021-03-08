@@ -8,8 +8,49 @@
   </head>
 
   <body>
-    <p style="width:auto;">Please choose a table to insert data:</p>
+    <ul id = "menu">
+      <li><a href="index.php">Home</a></li>
+      <li><a href="#">db Maintain</a>
+        <ul>
+          <li><a href="templates/insert.php">Insert</a></li>
+          <li><a href="templates/delete.php">Delete</a></li>
+          <li><a href="templates/select.php">Select</a></li>
+          <li><a href="templates/update.php">Update</a></li>
+        </ul>
+      </li>
+      <li><a href="templates/aboutus.php">About Us</a></li>
+      <li><a href="templates/contactus.php">Contact Us</a></li>
+      <?php if (isset($_SESSION['user'])){
+        echo "<li style='float:right'><a href='scripts/logout.php'>Sign Out</a></li>";
+        echo "<li style='float:right'><a href=''>Welcome ". $_SESSION['user'] ."</a></li>";
+      }
+      else {
+        echo "<li style='float:right'><a href='templates/signup.php'>Sign Up</a></li>";
+      }
+      ?>
 
+      <li><a href="templates/reviews.php">Reviews</a></li>
+      <?php if (!isset($_SESSION['user'])){
+        echo "<li style='float:right'><a href='templates/login.php'>Login</a></li>";
+      }
+      ?>
+      <li style="float:right"><a href="#"><span onclick="search()">Search</span></a></li>
+      <li><a href="#">Type of Services</a>
+        <ul>
+          <li><a href="templates/rideshare.php">Rideshare</a></li>
+          <li><a href="templates/ride_and_delivery.php">Ride & Delivery</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <div id="search" style="float:right; display:none;">
+      <form action="#" method="POST">
+        <input type="text" placeholder="Search..." name="search">
+        <button name="submit_result" type="submit">submit</button>
+      </form>
+    </div>
+    
+    <p style="width:auto;">Please choose a table to insert data:</p>
       <form action="#" method="POST">
         <?php
           //DB Table Selection
@@ -285,11 +326,6 @@
         $dbc -> close();
           //
         ?>
-        
       </form>
-
-    <p style="width:auto;">
-
-     </p>
   </body>
 </html>
