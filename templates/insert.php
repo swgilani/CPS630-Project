@@ -8,7 +8,7 @@ if(!isset($_SESSION))
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Plan for Smart Services(PS2)</title>
+    <title>Insert</title>
     <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
     <script>
       function search() {
