@@ -47,7 +47,7 @@ if(!isset($_SESSION))
       }
       ?>
       
-      <li><a href="templates/reviews.html">Reviews</a></li>
+      <li><a href="templates/reviews.php">Reviews</a></li>
       <?php if (!isset($_SESSION['user'])){
         echo "<li style='float:right'><a href='templates/login.php'>Login</a></li>";
       }

@@ -3,14 +3,16 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Insert</title>
+    <title>Delete</title>
     <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
   </head>
 
   <body>
+    <h2>Delete</h2>
     <p style="width:auto;">Please choose a table to delete data:</p>
 
       <form action="#" method="POST">
+        <label>Tables:</label>
         <select id="insert_select" name="select">
           <option value="car_table">car table</option>
           <option value="coffee_table">coffee table</option>
@@ -19,7 +21,7 @@
           <option value="trip_table">trip table</option>
           <option value="user_table">user table</option>
         </select><br>
-        <label>conditions:</label>
+        <label>Conditions:</label>
         <input type="text" name="conditions"><br>
         <button name="submit_table" type="submit">submit</button>
       </form>
