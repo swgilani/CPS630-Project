@@ -35,7 +35,7 @@
             $condition1 = $_POST["condition1"];
             $condition2 = $_POST["condition2"];
           //insert data
-          $sql = "UPDATE " .$table. " SET " .$condition1. " WHERE " .$condition2."</br>";
+          $sql = "UPDATE " .$table. " SET " .$condition1. " WHERE " .$condition2;
           //success or fail
           if($dbc->query($sql) == TRUE){
             echo "Records updated successfully.";
