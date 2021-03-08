@@ -25,7 +25,7 @@ if(isset($_POST['submit'])){
 
     $result = mysqli_query($dbc,$sql) or die("Error Inserting user to user_table");
     //Redirect To login 
-    header("Location: ../templates/login.html");
+    header("Location: ../templates/login.php");
    }
 
 }

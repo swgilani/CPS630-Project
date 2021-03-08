@@ -14,8 +14,14 @@ if(isset($_POST['login'])){
         $sql="SELECT * FROM user_table WHERE email='$email' AND pw='$psw'";
         $result = mysqli_query($dbc, $sql);
         if($row = mysqli_fetch_assoc($result)){
-            $_SESSION['user']= $row["userID"];
-            header("location: ../index.html");
+
+            if(!isset($_SESSION)) 
+            { 
+                session_start(); 
+            } 
+            $_SESSION['user']= $row["first_name"];
+            $_SESSION['userID'] = $row["userID"];
+            header("location: ../index.php");
         }
         else{
             header("location: ../templates/login.php?Invalid= Enter Correct Email and Password");
