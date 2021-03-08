@@ -12,6 +12,7 @@
     <p style="width:auto;">Please enter information to upadte tables:</p>
 
       <form action="#" method="POST">
+        <label>Tables:</label>
         <select id="insert_select" name="select">
           <option value="car_table">car table</option>
           <option value="coffee_table">coffee table</option>
@@ -20,9 +21,9 @@
           <option value="trip_table">trip table</option>
           <option value="user_table">user table</option>
         </select><br>
-        <label>set:</label>
+        <label>Set:</label>
         <input type="text" name="condition1"><br>
-        <label>conditions:</label>
+        <label>Conditions:</label>
         <input type="text" name="condition2"><br>
         <button name="submit_table" type="submit">submit</button>
       </form>
