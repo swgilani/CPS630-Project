@@ -118,12 +118,6 @@ if(!isset($_SESSION))
             <td>#222-222-2222</td>
           </tr>
           <tr>
-            <td>Rui Qi Wang</td>
-            <td>500841896</td>
-            <td>r1wang@ryerson.ca</td>
-            <td>#333-333-3333</td>
-          </tr>
-          <tr>
             <td>Ke Zhang</td>
             <td>500832394</td>
             <td>ke.zhang@ryerson.ca</td>
