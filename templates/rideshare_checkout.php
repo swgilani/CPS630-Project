@@ -141,23 +141,6 @@ require_once('../scripts/db_connect.php');
 	</div>
   </form>
 
-  <?php
-  pre_r($_POST);
-  ?>
-
-  
-<?php
-  function pre_r($array){
-    echo '<pre>';
-    print_r($array);
-    echo '</pre>';
-  }
-  ?>
- 
-
-
-  <?php //session_destroy();
-      ?>
     <br><br>
 
  

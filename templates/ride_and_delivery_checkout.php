@@ -134,7 +134,7 @@ require_once('../scripts/db_connect.php'); ?>
       while ($row = mysqli_fetch_array($response)){
         
         echo "<li id = '".$count."' name='item1' value='first'  draggable='true' ondragstart='drag(event)'><input type='hidden' name='item[]' value='".$row['flower_name']. ",". $row['price']."'/>" .
-        $row['flower_name'] . " - $" . $row['price'] .  "<img src='https://cdn.th3rdwave.coffee/merchants/3kI3aupy/3kI3aupy-md_2x.jpg'  width='35' height='35'></li>";
+        $row['flower_name'] . " - $" . $row['price'] .  "<img src='https://images.pexels.com/photos/736230/pexels-photo-736230.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'  width='35' height='35'></li>";
         $count++;
 
       }
@@ -172,24 +172,7 @@ require_once('../scripts/db_connect.php'); ?>
 	</div>
   </form>
 
-  <?php
-  echo "shit below is for testing purposes";
-  pre_r($_POST);
-  ?>
 
-  
-<?php
-  function pre_r($array){
-    echo '<pre>';
-    print_r($array);
-    echo '</pre>';
-  }
-  ?>
- 
-
-
-  <?php 
-  ?>
     <br><br>
 
  
