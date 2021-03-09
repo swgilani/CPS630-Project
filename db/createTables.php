@@ -1,22 +1,5 @@
 <?php
 require 'dbc.php';
-
-//If order_table doesn't exist, create table
-$tableCheck = mysqli_query($dbc,'select 1 from `order_table` LIMIT 1');
-if($tableCheck == FALSE){
-    $sql = "CREATE TABLE order_table(
-    order_ID INT(11) NOT NULL UNIQUE AUTO_INCREMENT,
-    date_issued DATE,
-    date_done DATE,
-    total_price DECIMAL(38,2),
-    payment_code INT,
-    userID INT, 
-    trip_ID INT,
-    store_name VARCHAR(50)
-    )";
-$result = mysqli_query($dbc,$sql) or die("Unable to create Order Table $sql");
-}
-
 //If user_table doesn't exist, create table
 $tableCheck = mysqli_query($dbc,'select 1 from `user_table` LIMIT 1');
 if($tableCheck == FALSE){
@@ -31,20 +14,6 @@ if($tableCheck == FALSE){
         balance DECIMAL(38,2)
         )";
     $result = mysqli_query($dbc,$sql) or die("Unable to create User Table $sql");
-}
-
-//If trip_table doesn't exist, create table
-$tableCheck = mysqli_query($dbc,'select 1 from `trip_table` LIMIT 1');
-if($tableCheck == FALSE){
-    $sql = "CREATE TABLE trip_table(
-        tripID INT(11) NOT NULL UNIQUE AUTO_INCREMENT,
-        source_code VARCHAR(50),
-        destinationCode VARCHAR(50),
-        distance DECIMAL(38,2),
-        carID INT(11),
-        price DECIMAL(38,2)
-        )";
-    $result = mysqli_query($dbc,$sql) or die("Unable to create Trip Table $sql");
 }
 
 //If car_table doesn't exist, create table
@@ -68,6 +37,40 @@ if($tableCheck == FALSE){
 
     $result = mysqli_query($dbc,$sql) or die("Error inserting data to Car Table");
 }
+
+//If trip_table doesn't exist, create table
+$tableCheck = mysqli_query($dbc,'select 1 from `trip_table` LIMIT 1');
+if($tableCheck == FALSE){
+    $sql = "CREATE TABLE trip_table(
+        tripID INT(11) NOT NULL UNIQUE AUTO_INCREMENT,
+        source_code VARCHAR(50),
+        destinationCode VARCHAR(50),
+        distance DECIMAL(38,2),
+        carID INT(11),
+        price DECIMAL(38,2),
+        FOREIGN KEY (carID) REFERENCES car_table(carID)
+        )";
+    $result = mysqli_query($dbc,$sql) or die("Unable to create Trip Table $sql");
+}
+
+//If order_table doesn't exist, create table
+$tableCheck = mysqli_query($dbc,'select 1 from `order_table` LIMIT 1');
+if($tableCheck == FALSE){
+    $sql = "CREATE TABLE order_table(
+    order_ID INT(11) NOT NULL UNIQUE AUTO_INCREMENT,
+    date_issued DATE,
+    date_done DATE,
+    total_price DECIMAL(38,2),
+    payment_code INT,
+    userID INT, 
+    trip_ID INT,
+    store_name VARCHAR(50),
+    FOREIGN KEY (trip_ID) REFERENCES trip_table(tripID),
+    FOREIGN KEY (userID) REFERENCES user_table(userID)
+    )";
+$result = mysqli_query($dbc,$sql) or die("Unable to create Order Table $sql");
+}
+
 
 //If flower_table doesn't exist, create table
 $tableCheck = mysqli_query($dbc,'select 1 from `flower_table` LIMIT 1');
