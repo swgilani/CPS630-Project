@@ -26,14 +26,18 @@ if(!isset($_SESSION))
   <body>
     <ul id = "menu">
       <li><a href="index.php">Home</a></li>
-      <li><a href="#">db Maintain</a>
-        <ul>
-          <li><a href="templates/insert.php">Insert</a></li>
-          <li><a href="templates/delete.php">Delete</a></li>
-          <li><a href="templates/select.php">Select</a></li>
-          <li><a href="templates/update.php">Update</a></li>
-        </ul>
-      </li>
+
+      <?php if (isset($_SESSION['user']) && $_SESSION['userID'] == 1){
+      echo "<li><a href='#'>db Maintain</a>";
+      echo "<ul>";
+      echo "<li><a href='templates/insert.php'>Insert</a></li>";
+      echo "<li><a href='templates/delete.php'>Delete</a></li>";
+      echo "<li><a href='templates/select.php'>Select</a></li>";
+      echo"<li><a href='templates/update.php'>Update</a></li>";
+      echo"</ul>";
+      echo"</li>";
+      }
+      ?>
       <li><a href="templates/aboutus.php">About Us</a></li>
       <li><a href="templates/contactus.php">Contact Us</a></li>
       
