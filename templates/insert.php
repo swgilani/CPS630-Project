@@ -321,7 +321,7 @@ if(!isset($_SESSION))
                 $info5 = $_POST["info5"];
                 $info6 = $_POST["info6"];
                 $info7 = $_POST["info7"];
-                $sql = "INSERT INTO order_table (order_ID,date_issued,date_done,total_price,payment_code,userID,tripID,store_name) 
+                $sql = "INSERT INTO order_table (order_ID,date_issued,date_done,total_price,payment_code,userID,trip_ID,store_name) 
                 VALUES ('$info0','$info1','$info2','$info3','$info4','$info5','$info6','$info7');";
                 $result = mysqli_query($dbc,$sql) or die("Error inserting data to order_table");
                 break;
