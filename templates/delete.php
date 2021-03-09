@@ -116,7 +116,7 @@ if(!isset($_SESSION))
         if (isset($_POST['submit_table'])){
           $table = $_POST["select"];
           $conditions = $_POST["conditions"];
-        //insert data
+        //delete data
         $sql = "DELETE FROM " .$table. " WHERE " .$conditions;
         //success or fail
         if($dbc->query($sql) === TRUE){
